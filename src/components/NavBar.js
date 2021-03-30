@@ -22,16 +22,67 @@ import swal from 'sweetalert'
 //Material-UI
 import {Container, Avatar, makeStyles, Grid, Paper, Toolbar, Typography, AppBar, Button, IconButton, Menu, MenuItem} from '@material-ui/core'
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
-import AccountBoxTwoToneIcon from '@material-ui/icons/AccountBoxTwoTone';
-import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
-import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
-import LockOpenTwoToneIcon from '@material-ui/icons/LockOpenTwoTone';
-import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AccountBoxTwoToneIcon from '@material-ui/icons/AccountBoxTwoTone'
+import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone'
+import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone'
+import LockOpenTwoToneIcon from '@material-ui/icons/LockOpenTwoTone'
+import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import PersonIcon from '@material-ui/icons/Person';
+import StorageIcon from '@material-ui/icons/Storage';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import { withStyles } from '@material-ui/core/styles';
+
 const NavBar = (props) => {
     const {loggedIn, handleLoggedIn, history} = props
     const dispatch = useDispatch()
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
+    //menu functionality
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.blueGrey,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
+
+
+  
+
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+//menu functionality
 
     const logOut = ()=>{
         //removing the token from the localstorage
@@ -58,9 +109,36 @@ const NavBar = (props) => {
                                     <Typography style = {{color: "blue"}}variant = "h2">BILLit</Typography>
                                 </Grid>
                                 <Grid container direction="row">
-                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<HomeTwoToneIcon />} component = {Link} to = "/">Home</Button></Grid>
+                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<HomeTwoToneIcon />} aria-controls="simple-menu" aria-haspopup="true" component = {Link} to = "/">Home</Button></Grid>
                                     <Grid item lg={2} style = {navStyle}><Button startIcon={<DashboardTwoToneIcon/>}component = {Link} to = "/userDashboard">Dashboard</Button></Grid>
-                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<AccountBoxTwoToneIcon/>} component = {Link} to = "/userProfile">Profile</Button></Grid>
+                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<AccountBoxTwoToneIcon/>} component = {Link} to = "/userProfile" onClick={handleClickMenu}>Profile</Button>
+                                        <StyledMenu
+                                                id="customized-menu"
+                                                anchorEl={anchorEl}
+                                                keepMounted
+                                                open={Boolean(anchorEl)}
+                                                onClose={handleClose}
+                                            >
+                                                <StyledMenuItem>
+                                                <ListItemIcon>
+                                                    <PersonIcon style = {{color: "gray"}} fontSize="small" />
+                                                </ListItemIcon>
+                                                <Button component = {Link} to = "/customers">Customers</Button>
+                                                </StyledMenuItem>
+                                                <StyledMenuItem>
+                                                <ListItemIcon>
+                                                    <StorageIcon fontSize="small" />
+                                                </ListItemIcon>
+                                                <Button  component = {Link} to = "/products">Products</Button>
+                                                </StyledMenuItem>
+                                                <StyledMenuItem>
+                                                <ListItemIcon>
+                                                    <ReceiptIcon fontSize="small" />
+                                                </ListItemIcon>
+                                                <Button  component = {Link} to = "/bills">Bill</Button>
+                                                </StyledMenuItem>
+                                            </StyledMenu>
+                                    </Grid>
                                     <Grid item lg={2} style = {navStyle}><Button startIcon={<ExitToAppTwoToneIcon/>}component = {Link} to = "/" onClick={logOut}>Logout</Button></Grid>
                             </Grid>
                         </Paper>

@@ -19,7 +19,9 @@ const UserDashboard = (props) => {
         dispatch(startGetBills())
     },[dispatch])
 
+    //Last five items
     const lastFiveCustomers = customersData.slice(Math.max(customersData.length - 5, 0))
+    console.log(lastFiveCustomers)
     const lastFiveBills = billsData.slice(Math.max(billsData.length - 5, 0))
     console.log(lastFiveBills)
     

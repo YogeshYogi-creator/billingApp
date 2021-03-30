@@ -40,7 +40,7 @@ const UserLogin = (props) => {
                 password: password
             }
         
-        axios.post('http://dct-billing-app.herokuapp.com/api/users/login', formData)
+        axios.post('https://dct-billing-app.herokuapp.com/api/users/login', formData)
         .then((response)=> {
             const result = response.data
             if(Object.keys(result).includes('errors')){

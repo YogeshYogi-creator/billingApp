@@ -8,7 +8,8 @@ const BillsList = (props) => {
         return state.bills
     })
     console.log(data)
-        const handleSearchChange = (e) => {
+
+    const handleSearchChange = (e) => {
         setSearchInput(e.target.value)
     }
     if(searchInput.length > 0){

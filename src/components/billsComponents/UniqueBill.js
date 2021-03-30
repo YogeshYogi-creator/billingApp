@@ -1,23 +1,37 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 import jsPDF from "jspdf"
 import {Container, Avatar, makeStyles, Grid, Paper, Toolbar,
          Typography, AppBar, Button, IconButton, Menu, MenuItem} from '@material-ui/core'
 import SaveIcon from '@material-ui/icons/Save'
 const UniqueBill = (props) => {
     const {id} = props.match.params
-    console.log(id)
-    const [uniqueBill, setUniqueBill] = useState({})
+    // console.log(id)
+    let [uniqueBill, setUniqueBill] = useState({})
     const [orderDetails, setOrderDetails] = useState([])
     const [product, setProduct] = useState('')
     const [quantity, setQuentity] = useState('')
     const [price, setPrice] = useState('')
     const [subTotal, setSubTotal] = useState('')
-    // console.log('uniqueBill', uniqueBill)
+    console.log('uniqueBill_id', uniqueBill.customer)
     // console.log('orderDetails', orderDetails)
-    console.log('typeof Date', typeof(uniqueBill.date))
+    // console.log('typeof Date', typeof(uniqueBill.date))
     // console.log('date', uniqueBill.date.slice(0,10))
+
+    const billCustomer = useSelector((state)=>{
+        return state.customers
+    })
+    console.log("billCustomer", billCustomer)
+
+    let customerName = ''
+    for(let i=0; i<billCustomer.length; i++){
+        if(billCustomer._id === uniqueBill.customer){
+            customerName = billCustomer.name
+        }
+    }
+    console.log('customerName', customerName)
     useEffect(()=>{
         axios.get(`https://dct-billing-app.herokuapp.com/api/bills/${id}`, {
             headers: {
@@ -41,6 +55,7 @@ const UniqueBill = (props) => {
         })
     },[id])
 
+//generate pdf
     const generatePDF = () => {
       let doc = new jsPDF('p', 'pt');
       
@@ -66,19 +81,13 @@ const UniqueBill = (props) => {
     }
 
 
-    const navStyle = {
-        position: "relative",
-        left: 20
-    }
     return(
         <Container>
             <Grid>
                 <hr/>
                     <Typography variant = "h4">Bill-Details</Typography>
                 <hr/>
-                    <Typography><b>User:</b> {uniqueBill.user}</Typography>
-                <hr/>
-                    <Typography><b>Customer_id:</b> {uniqueBill.customer}</Typography>
+                    <Typography><b>Customer:</b>name</Typography>
                     <Typography><b>Date:</b> {uniqueBill.date}</Typography>
                     <Typography><b>Order Details: </b>{orderDetails.map(ele=>{
                     return (

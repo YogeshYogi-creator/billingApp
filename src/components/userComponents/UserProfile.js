@@ -38,11 +38,6 @@ const UserProfile = (props) => {
             <p><strong>Account Created Time: </strong>{data.createdAt.slice(11,18)}</p> */}
         </Grid>
         <hr/>
-        <Grid xs={12} sm={6}>
-            <Link to = '/customers'>Add Customer</Link><b> | </b>
-            <Link to = '/products'>Add Product</Link><b> | </b>
-            <Link to = '/bills'>Add Bills</Link>
-        </Grid>
     </Grid>
     </Container>
     )

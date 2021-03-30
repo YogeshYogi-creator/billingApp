@@ -4,11 +4,20 @@ import {Link} from 'react-router-dom'
 
 import {Container, Avatar, makeStyles, Grid, Paper, Toolbar,
          Typography, AppBar, Button, IconButton, Menu, MenuItem} from '@material-ui/core'
+import { useSelector } from 'react-redux'
 const UniqueCustomer = (props) => {
     const {id} = props.match.params
     console.log(id)
     const [uniqueCustomer, setUniqueCustomer] = useState({})
     console.log(uniqueCustomer)
+
+    const userId = useSelector((state)=>{
+        return state.userProfile
+    })
+    let userName = ''
+    if(userId._id === uniqueCustomer.user){
+        userName = userId.username
+    }
     useEffect(()=>{
         axios.get(`https://dct-billing-app.herokuapp.com/api/customers/${id}`, {
             headers: {
@@ -28,19 +37,17 @@ const UniqueCustomer = (props) => {
     
     return (
         <Container>
-            <Grid container>
-                <Grid>
+            <Grid container directions = 'row'>
+                <Grid xs = {12} sm = {6}>
                     <Typography variant = "h4">Customer-Details</Typography>
                 <hr/>
-                    <Typography><b>User:</b> {uniqueCustomer.user}</Typography>
+                    <Typography><b>User:</b> {userName}</Typography>
                 <hr/>
                     <Typography><b>Name:</b> {uniqueCustomer.name}</Typography>
                     <Typography><b>Mobile:</b> {uniqueCustomer.mobile}</Typography>
                     <Typography><b>email:</b> {uniqueCustomer.email}</Typography>
-                    <Typography><b>Customer-Id:</b> {uniqueCustomer._id}</Typography>
+                    
                 <hr/>
-                    <Link to='/userProfile'>back to profile</Link><b> | </b>
-                    <Link to='/customers'>customers</Link>
                     </Grid>
             </Grid>
         </Container>
