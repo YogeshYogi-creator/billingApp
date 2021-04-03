@@ -33,7 +33,7 @@ const CustomersList = (props) => {
                 <input style = {searchText} label="search" type = "text" value = {searchInput} onChange = {handleSearchChange} placeholder = "search by name" />
             </Grid>
                 
-            <Grid style = {{position: "relative", top: 10}}>
+            <Grid style = {{position: "relative", top: 10, overflow: "scroll", height: "500px"}}>
                 {data.map(ele=>{
                     // return <CustomersItem key = {ele._id} {...ele}/>
                     return <CustomersItem key = {ele._id} {...ele}/>

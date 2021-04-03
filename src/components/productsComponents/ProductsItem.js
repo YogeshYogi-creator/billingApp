@@ -3,13 +3,14 @@ import {useDispatch} from 'react-redux'
 import {removeProduct} from '../../actions/userActions' 
 import {Link} from 'react-router-dom'
 import EditProduct from './EditProduct'
-
-import {Container, TextField, Grid, 
-        Paper, Avatar, Button, Typography,
-        List, ListItem, ListItemText} from '@material-ui/core'
-
+import {Container, Grid, 
+    Paper, Typography,
+    List, ListItem, ListItemText} from '@material-ui/core'
+    
+import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
-import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
+import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
+
 const ProductsItem = (props) => {
     const dispatch = useDispatch()
     const {_id, name, price, user, createdAt, updatedAT} = props
@@ -35,11 +36,11 @@ const ProductsItem = (props) => {
                     <Paper>
                         <List>
                             <ListItem>
-                                <ListItemText style = {{textAlign: "center"}}>
+                                <ListItemText >
                                     <Link to = {`/products/${_id}`}><Typography variant = "h5">{name}</Typography></Link> <br/>
                                     <Grid style = {{display: "flex", flexDirection: "row", position: "relative", top: "5px"}}>
-                                        <Grid> <Avatar style={{backgroundColor: "red", marginRight:"10px"}} onClick = {handleRemove}><DeleteTwoToneIcon/></Avatar></Grid>
-                                        <Grid><Avatar style={{backgroundColor: "green", marginRight:"10px"}} onClick = {handleToggle} ><EditIcon/></Avatar></Grid>
+                                        <Grid> <IconButton style={{backgroundColor: "#e67e22", marginRight:"10px"}} onClick = {handleRemove}><DeleteTwoToneIcon/></IconButton></Grid>
+                                        <Grid><IconButton style={{backgroundColor: "lightblue", marginRight:"10px"}} onClick = {handleToggle} ><EditIcon/></IconButton></Grid>
                                     </Grid>
                                 </ListItemText>
                             </ListItem>

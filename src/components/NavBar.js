@@ -111,14 +111,9 @@ const StyledMenuItem = withStyles((theme) => ({
                                 <Grid container direction="row">
                                     <Grid item lg={2} style = {navStyle}><Button startIcon={<HomeTwoToneIcon />} aria-controls="simple-menu" aria-haspopup="true" component = {Link} to = "/">Home</Button></Grid>
                                     <Grid item lg={2} style = {navStyle}><Button startIcon={<DashboardTwoToneIcon/>}component = {Link} to = "/userDashboard">Dashboard</Button></Grid>
-                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<AccountBoxTwoToneIcon/>} component = {Link} to = "/userProfile" onClick={handleClickMenu}>Profile</Button>
-                                        <StyledMenu
-                                                id="customized-menu"
-                                                anchorEl={anchorEl}
-                                                keepMounted
-                                                open={Boolean(anchorEl)}
-                                                onClose={handleClose}
-                                            >
+                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<AccountBoxTwoToneIcon/>} component = {Link} to = "/userProfile" onClick={handleClickMenu}>Account</Button>
+
+                                        <StyledMenu  id="customized-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                                                 <StyledMenuItem>
                                                 <ListItemIcon>
                                                     <PersonIcon style = {{color: "gray"}} fontSize="small" />
@@ -137,9 +132,15 @@ const StyledMenuItem = withStyles((theme) => ({
                                                 </ListItemIcon>
                                                 <Button  component = {Link} to = "/bills">Bill</Button>
                                                 </StyledMenuItem>
+                                                <StyledMenuItem>
+                                                <ListItemIcon>
+                                                    <ExitToAppTwoToneIcon fontSize="small" />
+                                                </ListItemIcon>
+                                                <Button  component = {Link} to = "/" onClick={logOut}>Logout</Button>
+                                                </StyledMenuItem>
                                             </StyledMenu>
                                     </Grid>
-                                    <Grid item lg={2} style = {navStyle}><Button startIcon={<ExitToAppTwoToneIcon/>}component = {Link} to = "/" onClick={logOut}>Logout</Button></Grid>
+                                    {/* <Grid item lg={2} style = {navStyle}><Button startIcon={<ExitToAppTwoToneIcon/>}component = {Link} to = "/" onClick={logOut}>Logout</Button></Grid> */}
                             </Grid>
                         </Paper>
                     </Grid>

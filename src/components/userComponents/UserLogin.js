@@ -58,6 +58,7 @@ const UserLogin = (props) => {
         }else{
             setLoginErrors(errors)
         }
+        //Reset Form
         setEmail('')
         setPassword('')
     }
@@ -66,28 +67,35 @@ const UserLogin = (props) => {
     const avatarStyle = {backgroundColor: 'green'}
     return (
         <Container>
-            <center>
-            <form onSubmit = {handleSubmit} style = {{position: 'relative', top:15}}>
-                
-        <Grid> 
-            <Paper elevation = {10} style = {paperStyle}>
+            <Grid container>
                 <Grid>
-                <Avatar style = {avatarStyle}><LockOpenIcon/></Avatar>
-                <h1>Login</h1>
+                    <Typography color = "inherit" variant = "h4">Login Details:</Typography>
+                    <Typography color = "inherit" variant = "p">Email Id: yogesh11@gmail.com</Typography><br/>
+                    <Typography color = "inherit" variant = "p">Password: 123123123</Typography>
                 </Grid>
-            <TextField value = {email} onChange = {handleEmailChange} label = 'email' type = "email" placeholder = 'email' fullWidth required/>
-            {loginErrors.email && <span>{loginErrors.email}</span>}
-            <TextField value = {password} onChange = {handlePasswordChange} label = 'password' placeholder = 'password' type = 'password' fullWidth required/>
-            {loginErrors.password && <span>{loginErrors.email}</span>}
-            <Button type = 'submit' color = 'primary' variant="contained"  style = {{position: 'relative', top:10}} fullWidth>Login</Button>
-            <Typography>
-                <p>If you don't have an account!</p>
-                <Link to = '/userRegister'>Register</Link>
-            </Typography>
-            </Paper>
-        </Grid>
+                
+            <center>
+            <Grid xs={12} sm={6}>
+            <form onSubmit = {handleSubmit} style = {{position: 'relative', top:15}}>
+                <Paper elevation = {10} style = {paperStyle}>
+                    <Grid>
+                    <Avatar style = {avatarStyle}><LockOpenIcon/></Avatar>
+                    <h1>Login</h1>
+                    </Grid>
+                        <TextField value = {email} onChange = {handleEmailChange} label = 'email' type = "email" placeholder = 'email' fullWidth required/>
+                        {loginErrors.email && <span>{loginErrors.email}</span>}
+                        <TextField value = {password} onChange = {handlePasswordChange} label = 'password' placeholder = 'password' type = 'password' fullWidth required/>
+                        {loginErrors.password && <span>{loginErrors.email}</span>}
+                        <Button type = 'submit' color = 'primary' variant="contained"  style = {{position: 'relative', top:10}} fullWidth>Login</Button>
+                        <Typography>
+                            <p>If you don't have an account!</p>
+                            <Link to = '/userRegister'>Register</Link>
+                        </Typography>
+                </Paper>
          </form>
+            </Grid>
          </center>
+         </Grid>
         </Container>
     )
 }

@@ -26,7 +26,6 @@ const UserProfile = (props) => {
                 {data?
                 <Grid xs={12} sm={6}>
                     <Typography><strong>User Name: </strong>{data.username}</Typography>
-                    <Typography><strong>User Id: </strong>{data._id}</Typography>
                     <Typography><strong>Email: </strong>{data.email}</Typography>
                     <Typography><strong>Business Name: </strong>{data.businessName}</Typography>
                     <Typography><strong>Address: </strong>{data.address}</Typography>

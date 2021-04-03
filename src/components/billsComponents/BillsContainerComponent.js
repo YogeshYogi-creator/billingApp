@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
-import {startGetBills} from '../../actions/userActions'
+import {startGetBills, startGetProducts, startGetCustomers} from '../../actions/userActions'
 import BillsList from './BillsList'
 import BillsForm from './BillsForm'
 import {Container, TextField, Grid, Paper, Avatar, Button, Typography} from '@material-ui/core'
@@ -9,6 +9,12 @@ const BillsContainerComponent = (props) => {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(startGetBills())
+    },[dispatch])
+        useEffect(()=>{
+        dispatch(startGetProducts())
+    },[dispatch])
+            useEffect(()=>{
+        dispatch(startGetCustomers())
     },[dispatch])
     return (
         <Container>

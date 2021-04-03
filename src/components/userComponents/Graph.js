@@ -20,7 +20,8 @@ const Graph = (props) => {
     return (
         <Container>
             
-                <Grid>
+                <Grid container>
+                    <Grid xs={12} sm={6}>
                     <Chart
                         width={'500px'}
                         height={'300px'}
@@ -37,6 +38,7 @@ const Graph = (props) => {
                         }}
                         rootProps={{ 'data-testid': '1' }}
                     />
+                    </Grid>
                 </Grid>
 
         </Container>

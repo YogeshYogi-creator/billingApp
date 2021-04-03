@@ -34,7 +34,7 @@ const ProductsList = (props) => {
             <Grid style = {searchDiv} xs={12} sm={6}>
                 <input style = {searchText} label="search" type = "text" value = {searchInput} onChange = {handleSearchChange} placeholder = "search by name" />
             </Grid>
-            <Grid style = {{position: "relative", top: 45}}>
+            <Grid style = {{position: "relative", top: 45, overflow: "scroll", height: "500px"}}>
                 {data.map(ele=>{
                     return <ProductsItem key = {ele._id} {...ele}/>
                 })}
